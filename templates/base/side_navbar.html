@@ -1,0 +1,180 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: rgba(44,62,80);">
+    <!-- Brand Logo -->
+    <a href="{% url 'index' %}" class="brand-link animated swing">
+        <img src="{% static '/asset/img/logo-3.png' %}" alt="DSMS Logo" width="200">
+    </a>
+    <!-- Sidebar -->
+    <div class="sidebar" style="margin-top: -65px">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{% static '/asset/img/profile.png' %}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="" class="d-block">John Doe</a>
+            </div>
+        </div>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item active">
+                    <a href="{% url 'index' %}" class="nav-link">
+                        <i class="nav-icon fa fa-home" style="font-size:25px"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fa fa-user-plus" style="font-size:20px"></i>
+                        <p>
+                            Application
+                        </p>
+                        <i class="right fa fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'add_application' %}" class="nav-link">
+                                <i class="nav-icon fa fa-plus"></i>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'application_list' %}" class="nav-link">
+                                <i class="nav-icon fa fa-list"></i>
+                                <p>Manage</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fa fa-graduation-cap" style="font-size:20px"></i>
+                        <p>
+                            Student
+                        </p>
+                        <i class="right fa fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'add_student' %}" class="nav-link">
+                                <i class="nav-icon fa fa-plus"></i>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'student_list' %}" class="nav-link">
+                                <i class="nav-icon fa fa-list"></i>
+                                <p>Manage</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'student_attendance' %}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-clipboard"></i>
+                                <p>Attendance</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-user" style="font-size:20px"></i>
+                        <p>
+                            Teacher
+                        </p>
+                        <i class="right fa fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fa fa-plus"></i>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fa fa-list"></i>
+                                <p>Manage</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fa-solid fa-clipboard-user"></i>
+                                <p>Attendance</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-book" style="font-size:20px"></i>
+                        <p>
+                            Course
+                        </p>
+                        <i class="right fa fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fa fa-plus"></i>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fa fa-list"></i>
+                                <p>Manage</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-bookmark" style="font-size:20px"></i>
+                        <p>
+                            Batch
+                        </p>
+                        <i class="right fa fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fa fa-plus"></i>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fa fa-list"></i>
+                                <p>Manage</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fa fa-database" style="font-size:20px"></i>
+                        <p>
+                            Database
+                        </p>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

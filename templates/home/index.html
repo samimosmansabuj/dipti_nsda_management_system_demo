@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+<title>DIPTI & NSDA Management System</title>
+{% endblock title %}
+
+{% block body_title %}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0" style="color: rgb(242,175,88);">
+                    <span class="fa fa-tachometer"></span>
+                    Dashboard
+                </h1>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+{% endblock body_title %}
+
+{% block body_content %}
+<section class="content">
+    <div class="container-fluid">
+
+
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info elevation-1"><i class="fa fa-bookmark"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Batch</span>
+                        <span class="info-box-number">
+                            100
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-danger elevation-1">
+                        <i class="fa fa-graduation-cap"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Student</span>
+                        <span class="info-box-number">10</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-success elevation-1"><i class="fa fa-plus"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Application</span>
+                        <span class="info-box-number">20</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </div>
+        <!-- /.row -->
+
+
+
+    </div>
+    <!-- /.container-fluid -->
+</section>
+{% endblock body_content %}

@@ -1,0 +1,24 @@
+nav.mt-2 ul.nav-sidebar li a:hover{
+	background-color:  rgba(242,175,88,0.5) !important;
+}
+
+.bg-1{
+	background-color: rgba(20,143,119);
+}
+.bg-2{
+	background-color: rgba(241,196,15);
+}
+.bg-3{
+	background-color: rgba(253,132,105);
+}
+
+.brand-link
+{
+	margin-top: -55px;
+}
+
+.info{
+	font-size: 13px !important;
+	letter-spacing: 0.0625em;
+	margin:-5px;
+}

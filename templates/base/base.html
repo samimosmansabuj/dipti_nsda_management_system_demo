@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block title %}
+    <title>Base</title>
+    {% endblock title %}
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static '/asset/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/asset/css/adminlte.min.css' %}">
+    <link rel="stylesheet" href="{% static '/asset/css/style.css' %}">
+    
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+
+        <!-- Navbar -->
+        {% include './navbar.html' %}
+        <!-- /.navbar -->
+
+
+        <!-- Main Sidebar Container -->
+        {% include './side_navbar.html' %}
+        <!-- Main Sidebar Container -->
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+
+
+            <!-- Content Header (Page header) -->
+            {% block body_title %}
+            
+            {% endblock body_title %}
+            <!-- /.content-header -->
+
+
+
+            <!-- Main content -->
+            {% block body_content %}
+            
+            {% endblock body_content %}
+            <!-- /.content -->
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+    <!-- ./wrapper -->
+
+
+
+    <!-- jQuery -->
+    <script src="{% static '/asset/jquery/jquery.min.js' %}"></script>
+    <script src="{% static '/asset/js/adminlte.js' %}"></script>
+</body>
+
+</html>
