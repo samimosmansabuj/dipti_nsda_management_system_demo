@@ -5,7 +5,170 @@
 {% endblock title %}
 
 {% block body_title %}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 animated bounceInRight">
+                <h1 class="m-0" style="color: rgb(242,175,88);"><span class="fa fa-bars"></span> List Student</h1>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">List Student</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
 {% endblock body_title %}
 
 {% block body_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <center>Student Information</center>
+                </h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form>
+                <div class="card-body">
+                    <div class="row">
+
+
+
+
+
+                        <form method="GET">
+                            <div class="col-md-3">
+                                <div class="card-header">
+                                    <span class="fa fa-user"> Student Information</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Student Name</label>
+                                            {{filter_form.course}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Batch</label>
+                                            {{filter_form.batch}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Search</label>
+                                            {{filter_form.search}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <a href="{% url 'student_list' %}" class="btn btn-primary">Reset</a>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+                        <div class="col-md-9" style="border-left: 1px solid #ddd;">
+                            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                <div class="row">
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example1"
+                                            class="table table-bordered table-striped dataTable no-footer" role="grid"
+                                            aria-describedby="example1_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting sorting_asc" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-sort="ascending"
+                                                        aria-label="Supplier Name: activate to sort column descending"
+                                                        style="width: 165.237px;">Student Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Description: activate to sort column ascending"
+                                                        style="width: 129.875px;">Course Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Status: activate to sort column ascending"
+                                                        style="width: 73.975px;">Batch Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Date Created: activate to sort column ascending"
+                                                        style="width: 146.125px;">Status</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Created By: activate to sort column ascending"
+                                                        style="width: 123.225px;">Phone Number</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Action: activate to sort column ascending"
+                                                        style="width: 101.263px;">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {% for student in student %}
+                                                <tr class="odd">
+                                                    <td class="sorting_1">{{student.name}}</td>
+                                                    <td>{{student.course.course_name}}</td>
+                                                    <td>{{student.batch.batch_name}}</td>
+                                                    <td>{{student.name}}</td>
+                                                    <td>{{student.phone_number}}</td>
+                                                    <td class="text-right">
+                                                        <a class="btn btn-sm btn-success" href="{% url 'add_student' student.id %}"><i
+                                                                class="fa fa-pen"></i></a>
+                                                        <a class="btn btn-sm btn-danger" href="#" data-toggle="modal"
+                                                            data-target="#delete"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-5">
+                                        <div class="dataTables_info" id="example1_info" role="status"
+                                            aria-live="polite">Showing 1 to 2 of 2 entries</div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-7">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button page-item previous disabled"
+                                                    id="example1_previous"><a href="#" aria-controls="example1"
+                                                        data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                                <li class="paginate_button page-item active"><a href="#"
+                                                        aria-controls="example1" data-dt-idx="1" tabindex="0"
+                                                        class="page-link">1</a></li>
+                                                <li class="paginate_button page-item next disabled" id="example1_next">
+                                                    <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0"
+                                                        class="page-link">Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.card-body -->
+    </div>
+</section>
 {% endblock body_content %}

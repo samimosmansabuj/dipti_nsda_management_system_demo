@@ -1,5 +1,19 @@
 from django import forms
 from .models import Student_Profile
+from home.models import *
+
+class Student_Filter_Form(forms.Form):
+    batch = forms.ModelChoiceField(queryset=Batch.objects.all(), required=False, widget=forms.Select(attrs={
+        'class': 'form-control'
+    }))
+    course = forms.ModelChoiceField(queryset=Course_Name.objects.all(), required=False, widget=forms.Select(attrs={
+        'class': 'form-control'
+    }))
+    search = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        'class': 'form-control', 'placeholder': 'Search'
+    }))
+    
+    
 
 class Student_Form(forms.ModelForm):
     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
