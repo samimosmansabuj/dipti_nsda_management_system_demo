@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from .forms import Application_Form
 from .models import *
 
@@ -14,7 +14,11 @@ def add_application(request, id=None):
         form  = Application_Form(instance=application)
         context['application'] = application
     else:
-        form  = Application_Form()
+        form  = Application_Form(request.GET)
+        if request.GET.get('course'):
+            course = Course_Name.objects.get(id=request.GET.get('course'))
+            context['course'] = course
+            form  = Application_Form(initial={'course': course})
     context['form'] = form
     
     if request.method == 'POST':
@@ -22,9 +26,13 @@ def add_application(request, id=None):
             form  = Application_Form(request.POST, instance=application)
         else:
             form  = Application_Form(request.POST)
+            print(form)
         if form.is_valid():
+            print('form valid')
             form.save()
             return redirect('application_list')
+        else:
+            return HttpResponse(form.errors)
     
     return render(request, 'application/add_application.html', context)
 

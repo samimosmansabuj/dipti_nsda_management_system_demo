@@ -12,15 +12,21 @@ class Course_Name(models.Model):
         return self.course_name
 
 class Batch(models.Model):
+    STATUS = (
+        ('Upcoming', 'Upcoming'),
+        ('Running', 'Running'),
+        ('Complete', 'Complete'),
+        ('Cancel', 'Cancel'),
+    )
     course = models.ForeignKey(Course_Name, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='course_batch')
     
     batch_name = models.CharField(max_length=300)
     total_class = models.PositiveIntegerField(blank=True, null=True)
-    total_assignment = models.PositiveIntegerField(blank=True, null=True)
     
     application_deadline = models.DateField(blank=True, null=True)
     batch_start = models.DateField(blank=True, null=True)
     batch_end = models.DateField(blank=True, null=True)
+    status = models.CharField(max_length=50, choices=STATUS, blank=True,null=True)
     
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)

@@ -45,92 +45,111 @@
          </div>
          <!-- /.card-header -->
          <!-- form start -->
-
+         {% if course or application %}
          <form method="POST">
-            {% csrf_token %}
-            <div class="card-body">
-               <div class="row">
-                  <div class="col-md-12">
-                     <div class="card-header">
-                        <span class="fa fa-user"> Applicant Information</span>
-                     </div>
+         {% csrf_token %}
+         {% else %}
+         <form method="GET">
+         {% endif %}
+
+               <div class="card-body">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="card-header">
+                           <span class="fa fa-user"> Applicant Information</span>
+                        </div>
 
 
 
-                     <div class="row">
 
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label>Name</label>
-                              {{form.name}}
+
+                        <div class="row">
+                           <div class="col-md-3">
+                              <div class="form-group">
+                                 <label>Course Name</label>
+                                 {{form.course}}
+                              </div>
                            </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label>Phone Number</label>
-                              {{form.phone_number}}
+                           {% if course or application %}
+                           <div class="col-md-3">
+                              <div class="form-group">
+                                 <label>Batch</label>
+                                 {{form.batch}}
+                              </div>
                            </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label>Email Address</label>
-                              {{form.email}}
-                           </div>
+                           {% endif %}
                         </div>
 
-                        <div class="col-md-3">
-                           <div class="form-group">
-                              <label>Course Name</label>
-                              {{form.course}}
-                           </div>
-                        </div>
-                        <div class="col-md-3">
-                           <div class="form-group">
-                              <label>Batch</label>
-                              {{form.batch}}
-                           </div>
-                        </div>
-                        <div class="col-md-3">
-                           <div class="form-group">
-                              <label>Last Education</label>
-                              {{form.last_education}}
-                           </div>
-                        </div>
-                        <div class="col-md-3">
-                           <div class="form-group">
-                              <label>Last Education Status</label>
-                              {{form.last_education_status}}
-                           </div>
-                        </div>
 
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label>Address</label>
-                              {{form.present_address}}
+                        {% if course or application %}
+                        <div class="row">
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <label>Name</label>
+                                 {{form.name}}
+                              </div>
                            </div>
-                        </div>
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <label>Phone Number</label>
+                                 {{form.phone_number}}
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <label>Email Address</label>
+                                 {{form.email}}
+                              </div>
+                           </div>
 
-                        {% if application %}
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label>Application Status</label>
-                              {{form.application_status}}
+
+                           <div class="col-md-3">
+                              <div class="form-group">
+                                 <label>Last Education</label>
+                                 {{form.last_education}}
+                              </div>
                            </div>
+                           <div class="col-md-3">
+                              <div class="form-group">
+                                 <label>Last Education Status</label>
+                                 {{form.last_education_status}}
+                              </div>
+                           </div>
+
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Address</label>
+                                 {{form.present_address}}
+                              </div>
+                           </div>
+
+                           {% if application %}
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Application Status</label>
+                                 {{form.application_status}}
+                              </div>
+                           </div>
+                           {% endif %}
+
                         </div>
                         {% endif %}
 
                      </div>
-
-
                   </div>
                </div>
-            </div>
-            <!-- /.card-body -->
+               <!-- /.card-body -->
 
-            <div class="card-footer">
-               <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-         </form>
+               <div class="card-footer">
+                  {% if course %}
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  {% elif application %}
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  {% else %}
+                  <button type="submit" class="btn btn-primary">Next</button>
+                  {% endif %}
+               </div>
+            </form>
 
       </div>
    </div>

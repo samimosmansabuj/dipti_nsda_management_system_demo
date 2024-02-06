@@ -16,13 +16,13 @@ class Student_Filter_Form(forms.Form):
     
 
 class Student_Form(forms.ModelForm):
-    username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
+    username = forms.CharField(required=False, max_length=50, widget=forms.TextInput(attrs={
         'class': 'form-control', 'placeholder': 'Enter Username'
     }))
     profile_picture = forms.ImageField(required=False, widget=forms.FileInput(attrs={
         'class': 'form-control'
     }))
-    email = forms.EmailField(max_length=150, widget=forms.EmailInput(attrs={
+    email = forms.EmailField(required=False, max_length=150, widget=forms.EmailInput(attrs={
         'class': 'form-control', 'placeholder': 'Enter Email Address'
     }))
     
