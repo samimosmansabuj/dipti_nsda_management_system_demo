@@ -17,9 +17,9 @@ class Student_Profile(models.Model):
         ('Running', 'Running'),
         ('Stop', 'Stop'),
     )
-    course = models.ForeignKey(Course_Name, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='student_course')
+    course = models.ForeignKey(Course, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='student_course')
     batch = models.ForeignKey(Batch, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='student_batch')
-    student_ID = models.OneToOneField(Custom_User, on_delete=models.CASCADE, blank=True, null=True, related_name='student_profile')
+    student_user = models.OneToOneField(Custom_User, on_delete=models.CASCADE, blank=True, null=True, related_name='student_user')
     
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=14)
@@ -36,11 +36,8 @@ class Student_Profile(models.Model):
         return self.name
 
 
-
 class Student_Attendance(models.Model):
     student = models.ForeignKey(Student_Profile,on_delete=models.CASCADE, blank=True, null=True, related_name='student_attendance')
-    course = models.ForeignKey(Course_Name, on_delete=models.DO_NOTHING, blank=True, null=True)
-    batch = models.ForeignKey(Batch, on_delete=models.DO_NOTHING, blank=True, null=True)
     date = models.DateField()
     status = models.BooleanField(default=False)
     
@@ -51,6 +48,13 @@ class Student_Attendance(models.Model):
         return f'{self.student.name} - {self.date}'
 
 
-
-
-
+class Teacher_Attendance(models.Model):
+    teacher = models.ForeignKey(Student_Profile,on_delete=models.CASCADE, blank=True, null=True, related_name='Teacher_attendance')
+    date = models.DateField()
+    status = models.BooleanField(default=False)
+    
+    class Meta:
+        ordering = ['-date']
+    
+    def __str__(self) -> str:
+        return f'{self.teacher.name} - {self.date}'

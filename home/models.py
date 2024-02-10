@@ -1,7 +1,7 @@
 from django.db import models
+from account.models import Custom_User
 
-# Create your models here.
-class Course_Name(models.Model):
+class Course(models.Model):
     course_name = models.CharField(max_length=300)
     image = models.ImageField(upload_to='course/image/', blank=True, null=True)
     
@@ -11,6 +11,25 @@ class Course_Name(models.Model):
     def __str__(self) -> str:
         return self.course_name
 
+class Teacher(models.Model):
+    EDUCATION = (
+        ('SSC', 'SSC'),
+        ('HSC', 'HSC'),
+        ('Diploma', 'Diploma'),
+        ('Bsc', 'Bsc'),
+        ('Honours', 'Honours'),
+        ('Masters', 'Masters'),
+    )
+    teacher_user = models.ForeignKey(Custom_User, related_name='teacher_user', on_delete=models.CASCADE, blank=True, null=True)
+    course = models.ForeignKey(Course, related_name='teacher_course', on_delete=models.CASCADE, blank=True, null=True)
+
+    name = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=14, blank=True, null=True)
+    last_education = models.CharField(choices=EDUCATION, max_length=50, blank=True, null=True)
+
+    def __str__(self) -> str:
+        return self.name
+
 class Batch(models.Model):
     STATUS = (
         ('Upcoming', 'Upcoming'),
@@ -18,7 +37,8 @@ class Batch(models.Model):
         ('Complete', 'Complete'),
         ('Cancel', 'Cancel'),
     )
-    course = models.ForeignKey(Course_Name, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='course_batch')
+    course = models.ForeignKey(Course, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='course_batch')
+    mantors = models.ManyToManyField(Teacher, blank=True, related_name='batch_mantors')
     
     batch_name = models.CharField(max_length=300)
     total_class = models.PositiveIntegerField(blank=True, null=True)
@@ -56,7 +76,7 @@ class Application(models.Model):
         ('Running', 'Running'),
         ('Stop', 'Stop'),
     )
-    course = models.ForeignKey(Course_Name, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='course_applicant')
+    course = models.ForeignKey(Course, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='course_applicant')
     batch = models.ForeignKey(Batch, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='batch_applicant')
     
     name = models.CharField(max_length=100)
@@ -73,6 +93,3 @@ class Application(models.Model):
     
     def __str__(self) -> str:
         return self.name
-
-
-

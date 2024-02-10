@@ -1,14 +1,8 @@
-from collections.abc import Mapping
-from typing import Any
 from django import forms
-from django.core.files.base import File
-from django.db.models.base import Model
-from django.forms.utils import ErrorList
-from .models import Batch, Course_Name, Application
-from .models import Course_Name
+from .models import Batch, Course, Application
 
 class Application_Form(forms.ModelForm):
-    course = forms.ModelChoiceField(queryset=Course_Name.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+    course = forms.ModelChoiceField(queryset=Course.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
     
     email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter Email Address'}), required=False)
     class Meta:

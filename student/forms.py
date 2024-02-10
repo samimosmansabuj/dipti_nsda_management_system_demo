@@ -6,7 +6,7 @@ class Student_Filter_Form(forms.Form):
     batch = forms.ModelChoiceField(queryset=Batch.objects.all(), required=False, widget=forms.Select(attrs={
         'class': 'form-control'
     }))
-    course = forms.ModelChoiceField(queryset=Course_Name.objects.all(), required=False, widget=forms.Select(attrs={
+    course = forms.ModelChoiceField(queryset=Course.objects.all(), required=False, widget=forms.Select(attrs={
         'class': 'form-control'
     }))
     search = forms.CharField(required=False, widget=forms.TextInput(attrs={

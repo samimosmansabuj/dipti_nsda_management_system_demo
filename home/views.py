@@ -16,7 +16,7 @@ def add_application(request, id=None):
     else:
         form  = Application_Form(request.GET)
         if request.GET.get('course'):
-            course = Course_Name.objects.get(id=request.GET.get('course'))
+            course = Course.objects.get(id=request.GET.get('course'))
             context['course'] = course
             form  = Application_Form(initial={'course': course})
     context['form'] = form
@@ -38,7 +38,7 @@ def add_application(request, id=None):
 
 
 def application_list(request):
-    all_course = Course_Name.objects.all()
+    all_course = Course.objects.all()
     all_batch = Batch.objects.all()
     context = {'all_batch': all_batch, 'all_course': all_course}
     
@@ -47,20 +47,20 @@ def application_list(request):
     status = request.GET.get('status')
     
     if course_id and batch_id and status:
-        course_id = get_object_or_404(Course_Name, id=course_id)
+        course_id = get_object_or_404(Course, id=course_id)
         batch_id = get_object_or_404(Batch, id=batch_id)
         application = Application.objects.filter(course=course_id, batch=batch_id, application_status=status)
     elif status:
         application = Application.objects.filter(application_status=status)
     elif course_id and batch_id:
-        course_id = get_object_or_404(Course_Name, id=course_id)
+        course_id = get_object_or_404(Course, id=course_id)
         batch_id = get_object_or_404(Batch, id=batch_id)
         application = Application.objects.filter(course=course_id, batch=batch_id)
     elif batch_id:
         batch_id = get_object_or_404(Batch, id=batch_id)
         application = Application.objects.filter(batch=batch_id)
     elif course_id:
-        course_id = get_object_or_404(Course_Name, id=course_id)
+        course_id = get_object_or_404(Course, id=course_id)
         application = Application.objects.filter(course=course_id)
     else:
         application = Application.objects.all()

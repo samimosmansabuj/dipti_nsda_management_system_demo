@@ -1,5 +1,5 @@
 from django import forms
-from .models import Teacher
+from home.models import Teacher
 
 class Teacher_Form(forms.ModelForm):
     username = forms.CharField(required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Username'}))

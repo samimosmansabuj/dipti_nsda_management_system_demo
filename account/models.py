@@ -3,7 +3,6 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from .managers import UserManager
 from django.db import models
-from home.models import Course_Name
 
 class Custom_User(AbstractBaseUser, PermissionsMixin):
     USER_TYPE = (
@@ -37,26 +36,6 @@ class Custom_User(AbstractBaseUser, PermissionsMixin):
     
     def __str__(self) -> str:
         return self.username
-
-
-class Teacher(models.Model):
-    EDUCATION = (
-        ('SSC', 'SSC'),
-        ('HSC', 'HSC'),
-        ('Diploma', 'Diploma'),
-        ('Bsc', 'Bsc'),
-        ('Honours', 'Honours'),
-        ('Masters', 'Masters'),
-    )
-    teacher_user = models.ForeignKey(Custom_User, related_name='teacher_user', on_delete=models.CASCADE, blank=True, null=True)
-    course = models.ForeignKey(Course_Name, related_name='teacher_course', on_delete=models.CASCADE, blank=True, null=True)
-
-    name = models.CharField(max_length=50)
-    phone_number = models.CharField(max_length=14, blank=True, null=True)
-    last_education = models.CharField(choices=EDUCATION, max_length=50, blank=True, null=True)
-
-    def __str__(self) -> str:
-        return self.name
 
 
 
