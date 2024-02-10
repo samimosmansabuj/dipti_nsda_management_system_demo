@@ -1,5 +1,5 @@
 from django import forms
-from .models import Batch, Course, Application
+from .models import Course, Application
 
 class Application_Form(forms.ModelForm):
     course = forms.ModelChoiceField(queryset=Course.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))

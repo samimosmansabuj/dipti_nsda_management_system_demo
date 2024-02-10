@@ -78,6 +78,15 @@
                               </div>
                            </div>
                            {% endif %}
+
+                           {% if not application %}
+                           <div class="col-md-3" style="margin: auto 0;">
+                              <div class="form-group">
+                                 <a href="{% url 'add_application' %}" class="btn btn-primary">Reset</a>
+                              </div>
+                           </div>
+                           {% endif %}
+                           
                         </div>
 
 

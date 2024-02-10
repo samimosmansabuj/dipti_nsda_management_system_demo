@@ -7,7 +7,7 @@ def index(request):
     return render(request, 'home/index.html')
 
 
-def add_application(request, id=None):
+def add_update_application(request, id=None):
     context = {}
     if id:
         application = get_object_or_404(Application, id=id)
@@ -26,9 +26,7 @@ def add_application(request, id=None):
             form  = Application_Form(request.POST, instance=application)
         else:
             form  = Application_Form(request.POST)
-            print(form)
         if form.is_valid():
-            print('form valid')
             form.save()
             return redirect('application_list')
         else:
@@ -39,36 +37,47 @@ def add_application(request, id=None):
 
 def application_list(request):
     all_course = Course.objects.all()
-    all_batch = Batch.objects.all()
-    context = {'all_batch': all_batch, 'all_course': all_course}
+    context = {'all_course': all_course}
     
     course_id = request.GET.get('course')
-    batch_id = request.GET.get('batch')
+    search = request.GET.get('search')
     status = request.GET.get('status')
+    batch = request.GET.get('batch')
     
-    if course_id and batch_id and status:
-        course_id = get_object_or_404(Course, id=course_id)
-        batch_id = get_object_or_404(Batch, id=batch_id)
-        application = Application.objects.filter(course=course_id, batch=batch_id, application_status=status)
+    if course_id:
+        select_course = Course.objects.get(id=course_id)
+        course_batch = Batch.objects.filter(course=select_course)
+        context['course_batch'] = course_batch
+        context['select_course'] = select_course
+    if search:
+        context['search'] = search
+    if status:
+        context['status'] = status
+    if batch:
+        batch = get_object_or_404(Batch, id=batch)
+        context['batch'] = batch
+        
+    
+    if course_id and course_batch and status and search:
+        application = Application.objects.filter(name__icontains=search, course=select_course, batch=batch, application_status=status)
+    elif course_id and status and search:
+        application = Application.objects.filter(name__icontains=search, course=select_course, application_status=status)
+    elif course_id and search:
+        application = Application.objects.filter(name__icontains=search, course=select_course)
+    elif search:
+        application = Application.objects.filter(name__icontains=search)
     elif status:
         application = Application.objects.filter(application_status=status)
-    elif course_id and batch_id:
-        course_id = get_object_or_404(Course, id=course_id)
-        batch_id = get_object_or_404(Batch, id=batch_id)
-        application = Application.objects.filter(course=course_id, batch=batch_id)
-    elif batch_id:
-        batch_id = get_object_or_404(Batch, id=batch_id)
-        application = Application.objects.filter(batch=batch_id)
+    elif course_id and batch:
+        application = Application.objects.filter(course=select_course, batch=batch)
+    elif batch:
+        application = Application.objects.filter(batch=batch)
     elif course_id:
-        course_id = get_object_or_404(Course, id=course_id)
-        application = Application.objects.filter(course=course_id)
+        application = Application.objects.filter(course=select_course)
     else:
         application = Application.objects.all()
     
     context['application'] = application
-    context['course_id'] = course_id
-    context['batch_id'] = batch_id
-    context['status'] = status
     
     return render(request, 'application/application.html', context)
 
